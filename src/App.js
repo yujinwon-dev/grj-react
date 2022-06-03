@@ -6,7 +6,7 @@ import Modal from './component/Modal';
 import SideBar from './component/Sidebar';
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [cards, setCards] = useState([
     {
       name: "소주",
@@ -38,10 +38,10 @@ function App() {
     <>
       <Header/>
       <main>
-        <SideBar openModal={() => setIsOpen(true)} alcohols={cards} />
+        <SideBar openModal={() => setIsModalOpen(true)} alcohols={cards} />
         <CardList cards={cards} />
       </main>
-      {isOpen && <Modal open={isOpen} closeModal={() => setIsOpen(false)} addItem={item => handleAddItem(item)} />}
+      {isModalOpen && <Modal open={isModalOpen} closeModal={() => setIsModalOpen(false)} addItem={item => handleAddItem(item)} />}
     </>
   );
 }

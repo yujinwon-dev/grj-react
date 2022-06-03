@@ -1,17 +1,28 @@
 import styled from 'styled-components';
 
+export default function SideBar({ openModal, alcohols }) {
+  return (
+    <StyledAside>
+      <AddBtn type="button" onClick={openModal}>추가</AddBtn>
+      <List>
+        {alcohols.map(alcohol => <li key={alcohol.src}>{alcohol.name}</li>)}
+      </List>
+    </StyledAside>
+  );
+}
+
 const StyledAside = styled.aside`
   min-width: 120px;
   border: 5px solid #5ac766;
   padding: 0.5rem;
   margin-right: 1rem;
+`;
 
-  .alcohol-list {
-    list-style: none;
-    color: #5ac766;
-    font-size: 1.5rem;
-    padding-left: 0;
-  }
+const List = styled.ul`
+  list-style: none;
+  color: #5ac766;
+  font-size: 1.5rem;
+  padding-left: 0;
 `;
 
 const AddBtn = styled.button`
@@ -32,14 +43,3 @@ const AddBtn = styled.button`
     border: 2px solid #5ac766;
   }
 `;
-
-export default function SideBar({ openModal, alcohols }) {
-  return (
-    <StyledAside>
-      <AddBtn type="button" onClick={() => openModal()}>추가</AddBtn>
-      <ul className="alcohol-list">
-        {alcohols.map(alcohol => <li key={alcohol.src}>{alcohol.name}</li>)}
-      </ul>
-    </StyledAside>
-  );
-}
