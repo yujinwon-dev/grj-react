@@ -95,15 +95,33 @@ export default function Modal({ open, closeModal, addItem }) {
         <StyledForm onSubmit={handleSubmit}>
           <div className="form-item">
             <label htmlFor="name">이름</label>
-            <input type="text" id="name" required onChange={e => setName(e.target.value)} />
+            <input
+              type="text"
+              id="name"
+              required 
+              value={name}
+              onChange={e => setName(e.target.value)}
+            />
           </div>
           <div className="form-item">
             <label htmlFor="src">이미지</label>
-            <input type="text" id="src" required onChange={e => setSrc(e.target.value)} />
+            <input
+              type="text"
+              id="src"
+              required
+              value={src}
+              onChange={e => setSrc(e.target.value)}
+            />
           </div>
           <div className="form-item">
             <label htmlFor="content">내용</label>
-            <input type="text" id="content" required onChange={e => setContent(e.target.value)} />
+            <input
+              type="text"
+              id="content"
+              required
+              value={content}
+              onChange={e => setContent(e.target.value)}
+            />
           </div>
           <button type="submit" className="submit-btn">저장</button>
         </StyledForm>
