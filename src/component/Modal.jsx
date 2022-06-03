@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const BackDrop = styled.div`
@@ -76,15 +77,14 @@ const CloseBtn = styled.button`
 `;
 
 export default function Modal({ open, closeModal, addItem }) {
+  const [name, setName] = useState('');
+  const [src, setSrc] = useState('');
+  const [content, setContent] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    const alt = e.target[0].value;
-    const src = e.target[1].value;
-    const content = e.target[2].value;
-
-    addItem({ alt, src, content });
+    addItem({ name, src, content });
     closeModal();
   }
 
@@ -95,15 +95,15 @@ export default function Modal({ open, closeModal, addItem }) {
         <StyledForm onSubmit={handleSubmit}>
           <div className="form-item">
             <label htmlFor="name">이름</label>
-            <input type="text" id="name" required />
+            <input type="text" id="name" required onChange={e => setName(e.target.value)} />
           </div>
           <div className="form-item">
             <label htmlFor="src">이미지</label>
-            <input type="text" id="src" required />
+            <input type="text" id="src" required onChange={e => setSrc(e.target.value)} />
           </div>
           <div className="form-item">
             <label htmlFor="content">내용</label>
-            <input type="text" id="content" required />
+            <input type="text" id="content" required onChange={e => setContent(e.target.value)} />
           </div>
           <button type="submit" className="submit-btn">저장</button>
         </StyledForm>

@@ -40,7 +40,7 @@ const Card = styled.div`
 export default function CardListItem({ card }) {
   return (
     <Card>
-      <img src={card.src} alt={card.alt} />
+      <img src={card.src} alt={card.name} />
       <p>{card.content}</p>
     </Card>
   );

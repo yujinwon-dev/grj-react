@@ -38,7 +38,7 @@ export default function SideBar({ openModal, alcohols }) {
     <StyledAside>
       <AddBtn type="button" onClick={() => openModal()}>추가</AddBtn>
       <ul className="alcohol-list">
-        {alcohols.map(alcohol => <li key={alcohol.src}>{alcohol.alt}</li>)}
+        {alcohols.map(alcohol => <li key={alcohol.src}>{alcohol.name}</li>)}
       </ul>
     </StyledAside>
   );
