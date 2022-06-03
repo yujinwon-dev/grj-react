@@ -4,9 +4,9 @@ export default function SideBar({ openModal, alcohols }) {
   return (
     <StyledAside>
       <AddBtn type="button" onClick={openModal}>추가</AddBtn>
-      <ul className="alcohol-list">
+      <List>
         {alcohols.map(alcohol => <li key={alcohol.src}>{alcohol.name}</li>)}
-      </ul>
+      </List>
     </StyledAside>
   );
 }
@@ -16,13 +16,13 @@ const StyledAside = styled.aside`
   border: 5px solid #5ac766;
   padding: 0.5rem;
   margin-right: 1rem;
+`;
 
-  .alcohol-list {
-    list-style: none;
-    color: #5ac766;
-    font-size: 1.5rem;
-    padding-left: 0;
-  }
+const List = styled.ul`
+  list-style: none;
+  color: #5ac766;
+  font-size: 1.5rem;
+  padding-left: 0;
 `;
 
 const AddBtn = styled.button`
