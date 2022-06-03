@@ -2,9 +2,11 @@ import { useState } from 'react';
 import './App.css';
 import CardList from './component/CardList';
 import Header from './component/Header';
+import Modal from './component/Modal';
 import SideBar from './component/Sidebar';
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
   const [cards, setCards] = useState([
     {
       src: "https://i.pinimg.com/564x/80/e8/66/80e866f6715c5e1b621978735ec3c1ef.jpg",
@@ -28,6 +30,10 @@ function App() {
     },
   ]);
 
+  function handleAddItem(item) {
+    setCards(prev => [...prev, item]);
+  }
+
   return (
     <>
       <Header />
@@ -35,6 +41,7 @@ function App() {
         <SideBar openModal={() => setIsOpen(true)} />
         <CardList cards={cards} />
       </main>
+      {isOpen && <Modal open={isOpen} closeModal={() => setIsOpen(false)} addItem={item => handleAddItem(item)} />}
     </>
   );
 }
