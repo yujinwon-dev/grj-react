@@ -33,16 +33,12 @@ const AddBtn = styled.button`
   }
 `;
 
-export default function SideBar({ openModal }) {
+export default function SideBar({ openModal, alcohols }) {
   return (
     <StyledAside>
       <AddBtn type="button" onClick={() => openModal()}>추가</AddBtn>
       <ul className="alcohol-list">
-        <li>소주</li>
-        <li>맥주</li>
-        <li>와인</li>
-        <li>보드카</li>
-        <li>샴페인</li>
+        {alcohols.map(alcohol => <li key={alcohol.src}>{alcohol.alt}</li>)}
       </ul>
     </StyledAside>
   );
