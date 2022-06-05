@@ -16,7 +16,7 @@ export default function Modal({ open, closeModal, addItem }) {
   return (
     <BackDrop>
       <StyledDialog open={open} id="modal">
-        <CloseBtn type="button" onClick={() => closeModal()}>X</CloseBtn>
+        <CloseBtn type="button" onClick={closeModal}>X</CloseBtn>
         <StyledForm onSubmit={handleSubmit}>
           <div className="form-item">
             <label htmlFor="name">이름</label>

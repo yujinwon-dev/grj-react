@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export default function SideBar({ openModal, alcohols }) {
   return (
     <StyledAside>
-      <AddBtn type="button" onClick={() => openModal()}>추가</AddBtn>
+      <AddBtn type="button" onClick={openModal}>추가</AddBtn>
       <ul className="alcohol-list">
         {alcohols.map(alcohol => <li key={alcohol.src}>{alcohol.name}</li>)}
       </ul>
