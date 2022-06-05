@@ -17,8 +17,8 @@ export default function Modal({ open, closeModal, addItem }) {
     <BackDrop>
       <StyledDialog open={open} id="modal">
         <CloseBtn type="button" onClick={closeModal}>X</CloseBtn>
-        <StyledForm onSubmit={handleSubmit}>
-          <div className="form-item">
+        <form onSubmit={handleSubmit}>
+          <FormItem>
             <label htmlFor="name">이름</label>
             <input
               type="text"
@@ -27,8 +27,8 @@ export default function Modal({ open, closeModal, addItem }) {
               value={name}
               onChange={e => setName(e.target.value)}
             />
-          </div>
-          <div className="form-item">
+          </FormItem>
+          <FormItem>
             <label htmlFor="src">이미지</label>
             <input
               type="text"
@@ -37,8 +37,8 @@ export default function Modal({ open, closeModal, addItem }) {
               value={src}
               onChange={e => setSrc(e.target.value)}
             />
-          </div>
-          <div className="form-item">
+          </FormItem>
+          <FormItem>
             <label htmlFor="content">내용</label>
             <input
               type="text"
@@ -47,9 +47,9 @@ export default function Modal({ open, closeModal, addItem }) {
               value={content}
               onChange={e => setContent(e.target.value)}
             />
-          </div>
-          <button type="submit" className="submit-btn">저장</button>
-        </StyledForm>
+          </FormItem>
+          <SubmitBtn type="submit">저장</SubmitBtn>
+        </form>
       </StyledDialog>
     </BackDrop>
   );
@@ -75,44 +75,42 @@ const StyledDialog = styled.dialog`
   padding: 2rem 1rem;
 `;
 
-const StyledForm = styled.form`
-  .form-item label {
+const FormItem = styled.div`
+  label {
     display: block;
     font-size: 1.1rem;
     font-weight: bold;
     margin: 0.5rem 0;
   }
 
-  .form-item input,
-  .submit-btn {
+  input {
     display: block;
     width: 100%;
-  }
-
-  .form-item input {
     font-size: 1.2rem;
     padding: 0.5rem;
     border: 2px solid #7473c9;
     border-radius: 5px;
   }
 
-  .form-item input:focus {
+  input:focus {
     outline: none !important;
     border: 2px solid #9be8d6;
   }
+`;
 
-  .submit-btn {
-    font-size: 1rem;
-    color: #fff;
-    padding: 0.5rem 0;
-    border: none;
-    border-radius: 5px;
-    background: #7473c9;
-    margin-top: 1.5rem;
-    cursor: pointer;
-  }
+const SubmitBtn = styled.button`
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  color: #fff;
+  padding: 0.5rem 0;
+  border: none;
+  border-radius: 5px;
+  background: #7473c9;
+  margin-top: 1.5rem;
+  cursor: pointer;
 
-  .submit-btn:hover {
+  :hover {
     color: #000;
     background: #9be8d6;
   }
