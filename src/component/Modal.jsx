@@ -1,6 +1,60 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
+export default function Modal({ open, closeModal, addItem }) {
+  const [name, setName] = useState('');
+  const [src, setSrc] = useState('');
+  const [content, setContent] = useState('');
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    addItem({ name, src, content });
+    closeModal();
+  }
+
+  return (
+    <BackDrop>
+      <StyledDialog open={open} id="modal">
+        <CloseBtn type="button" onClick={() => closeModal()}>X</CloseBtn>
+        <StyledForm onSubmit={handleSubmit}>
+          <div className="form-item">
+            <label htmlFor="name">이름</label>
+            <input
+              type="text"
+              id="name"
+              required 
+              value={name}
+              onChange={e => setName(e.target.value)}
+            />
+          </div>
+          <div className="form-item">
+            <label htmlFor="src">이미지</label>
+            <input
+              type="text"
+              id="src"
+              required
+              value={src}
+              onChange={e => setSrc(e.target.value)}
+            />
+          </div>
+          <div className="form-item">
+            <label htmlFor="content">내용</label>
+            <input
+              type="text"
+              id="content"
+              required
+              value={content}
+              onChange={e => setContent(e.target.value)}
+            />
+          </div>
+          <button type="submit" className="submit-btn">저장</button>
+        </StyledForm>
+      </StyledDialog>
+    </BackDrop>
+  );
+}
+
 const BackDrop = styled.div`
   position: fixed;
   top: 0;
@@ -75,57 +129,3 @@ const CloseBtn = styled.button`
   padding: 0.8rem;
   cursor: pointer;
 `;
-
-export default function Modal({ open, closeModal, addItem }) {
-  const [name, setName] = useState('');
-  const [src, setSrc] = useState('');
-  const [content, setContent] = useState('');
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    addItem({ name, src, content });
-    closeModal();
-  }
-
-  return (
-    <BackDrop>
-      <StyledDialog open={open} id="modal">
-        <CloseBtn type="button" onClick={() => closeModal()}>X</CloseBtn>
-        <StyledForm onSubmit={handleSubmit}>
-          <div className="form-item">
-            <label htmlFor="name">이름</label>
-            <input
-              type="text"
-              id="name"
-              required 
-              value={name}
-              onChange={e => setName(e.target.value)}
-            />
-          </div>
-          <div className="form-item">
-            <label htmlFor="src">이미지</label>
-            <input
-              type="text"
-              id="src"
-              required
-              value={src}
-              onChange={e => setSrc(e.target.value)}
-            />
-          </div>
-          <div className="form-item">
-            <label htmlFor="content">내용</label>
-            <input
-              type="text"
-              id="content"
-              required
-              value={content}
-              onChange={e => setContent(e.target.value)}
-            />
-          </div>
-          <button type="submit" className="submit-btn">저장</button>
-        </StyledForm>
-      </StyledDialog>
-    </BackDrop>
-  );
-}

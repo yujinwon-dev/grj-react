@@ -1,5 +1,14 @@
 import styled from 'styled-components';
 
+export default function CardListItem({ card }) {
+  return (
+    <Card>
+      <img src={card.src} alt={card.name} />
+      <p>{card.content}</p>
+    </Card>
+  );
+}
+
 const Card = styled.div`
   display: flex;
   flex-direction: column;
@@ -36,12 +45,3 @@ const Card = styled.div`
     background-color:#ccf7c1;
   }
 `;
-
-export default function CardListItem({ card }) {
-  return (
-    <Card>
-      <img src={card.src} alt={card.name} />
-      <p>{card.content}</p>
-    </Card>
-  );
-}
