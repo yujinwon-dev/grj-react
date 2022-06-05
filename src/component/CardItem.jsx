@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function CardListItem({ card }) {
+export default function CardItem({ card }) {
   return (
     <Card>
       <img src={card.src} alt={card.name} />

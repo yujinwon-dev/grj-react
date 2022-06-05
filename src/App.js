@@ -1,11 +1,10 @@
 import { useState } from 'react';
+import styled from 'styled-components';
 import './App.css';
-import CardList from './component/CardList';
-import Header from './component/Header';
+import CardItem from './component/CardItem';
 import Modal from './component/Modal';
-import SideBar from './component/Sidebar';
 
-function App() {
+export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [cards, setCards] = useState([
     {
@@ -36,14 +35,75 @@ function App() {
 
   return (
     <>
-      <Header/>
+      <StyledHeader>
+        <Title>고량주</Title>
+      </StyledHeader>
       <main>
-        <SideBar openModal={() => setIsModalOpen(true)} alcohols={cards} />
-        <CardList cards={cards} />
+        <StyledAside>
+          <AddBtn type="button" onClick={() => setIsModalOpen(true)}>추가</AddBtn>
+          <List>
+            {cards.map(alcohol => <li key={alcohol.src}>{alcohol.name}</li>)}
+          </List>
+        </StyledAside>
+        <StyledSection>
+          {cards.map((item) => <CardItem key={item.src} card={item} />)}
+        </StyledSection>
       </main>
       {isModalOpen && <Modal open={isModalOpen} closeModal={() => setIsModalOpen(false)} addItem={item => handleAddItem(item)} />}
     </>
   );
 }
 
-export default App;
+const StyledHeader = styled.header`
+  border: 5px solid #ff9c33;
+  margin-bottom: 1rem;
+`;
+
+const Title = styled.h1`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ff9c33;
+`;
+
+const StyledAside = styled.aside`
+  min-width: 120px;
+  border: 5px solid #5ac766;
+  padding: 0.5rem;
+  margin-right: 1rem;
+`;
+
+const List = styled.ul`
+  list-style: none;
+  color: #5ac766;
+  font-size: 1.5rem;
+  padding-left: 0;
+`;
+
+const AddBtn = styled.button`
+  width: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background: #5ac766;
+  border: 2px solid #5ac766;
+  border-radius: 5px;
+  padding: 0.2rem 0;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+
+  :hover {
+    color: #5ac766;
+    background: none;
+    border: 2px solid #5ac766;
+  }
+`;
+
+const StyledSection = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  width: 100%;
+  border: 5px solid #9be8d6;
+  overflow-y: scroll;
+`;
